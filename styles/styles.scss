@@ -9,7 +9,7 @@
 #main {
     #wrapper {
         display: flex;
-        padding: 1%;
+        padding: 1% 0 0 0;
         align-items: center;
         justify-content: center;
         button{
@@ -25,6 +25,7 @@
     position: relative;
     #simon {
         position: relative;
+        margin-top: 2.5%;;
         margin-bottom: 2%;
         width: 550px;
         height: 550px;
@@ -46,7 +47,7 @@
             cursor: pointer;
             position: absolute;
             display: block;
-            right: 51%;
+            right: 51.5%;
             bottom: 52%;
             width: 45%; 
             height: 45%; 
@@ -58,7 +59,7 @@
             cursor: pointer;
             position: absolute;
             display: block;
-            right: 51%;
+            right: 51.5%;
             bottom: 4%;
             width: 45%; 
             height: 45%; 

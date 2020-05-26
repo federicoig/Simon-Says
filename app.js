@@ -82,6 +82,8 @@ startButton.addEventListener("click", function() {
         user.push(e.target)
         setTimeout(checkUserInput(), 1000)
     })
+
+    startButton.style.display = "none"
 })
 
 
