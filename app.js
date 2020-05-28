@@ -1,6 +1,6 @@
 let computer = []
 let user = []
-let counter = 1
+let round = 0
 let roundCounter = document.querySelector("#round")
 
 // FUNCTIONS
@@ -25,7 +25,6 @@ function lightSelectedColor(color){
 }
 
 function checkUserInput(){
-
     let errorCounter = 0
 
     for(let i=0; i <= user.length; i++){
@@ -35,33 +34,53 @@ function checkUserInput(){
     }
     if (errorCounter <= 0){
         user = []
-        computerTurn()
+        newTurn()
     }
     else if (errorCounter > 1) {
+        alert("You lose!")
         window.location.reload(false);
-        errorCounter = 0
-        resetEverything()
     }
 }
 
-function computerTurn(){
-    counter++
-    roundCounter.innerText = counter
-
+function newTurn(){
     computer.push(getRandomColor())
+
+    changeRoundNumber()
+    blockUserInput()
+
     computer.forEach((color, index) => {
         setTimeout(() => {
             lightSelectedColor(color)
         }, 800 * (index + 1))
     })
+
+    let secondsBeforeUserTurn = computer.length * 900
+
+    setTimeout( function() {
+        unblockUserInput()
+    }, secondsBeforeUserTurn);
 }
 
-function resetEverything(){
-    counter = 0
-    roundCounter.innerText = counter
-    user = []
-    computer = []
-    alert("You lose!")
+function blockUserInput(){
+    const colors = document.querySelector("#container")
+    colors.onclick = function(){
+        console.log("You have to wait until computer's turn ends!")
+    }
+}
+
+function unblockUserInput(){
+    const colors = document.querySelector("#container")
+
+    colors.onclick = function(e) {
+        lightSelectedColor(e.target)
+        user.push(e.target)
+        checkUserInput()
+    }
+}
+
+function changeRoundNumber(){
+    round++
+    roundCounter.innerText = round
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -69,20 +88,7 @@ function resetEverything(){
 const startButton = document.querySelector("#start")
 
 startButton.addEventListener("click", function() {
-    user = []
-    computer = []
-
-    roundCounter.innerText = 1
-    computer.push(lightSelectedColor(getRandomColor()))
-
-    const colors = document.querySelector("#container")
-
-    colors.addEventListener("click", function(e) {
-        lightSelectedColor(e.target)
-        user.push(e.target)
-        setTimeout(checkUserInput(), 1000)
-    })
-
+    newTurn()
     startButton.style.display = "none"
 })
 
