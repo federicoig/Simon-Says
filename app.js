@@ -18,7 +18,7 @@ function getRandomColor(){
 
 function lightSelectedColor(color){
     color.classList.add("color-selected")
-    setTimeout( () => { 
+    setTimeout( () => {
         color.classList.remove("color-selected")
     }, 300)
     return color;
@@ -27,18 +27,26 @@ function lightSelectedColor(color){
 function checkUserInput(){
     let errorCounter = 0
 
-    for(let i=0; i <= user.length; i++){
-        if(computer[i] !== user[i]){
-            errorCounter++
+    user.forEach( (color, index) => {
+        console.log(index)
+        if (color !== computer[index]){
+            return errorCounter++
         }
+    })
+
+    if (user.length === computer.length){
+        handleErrors(errorCounter)
     }
-    if (errorCounter <= 0){
+}
+
+function handleErrors(errorAmount){
+    if (errorAmount === 0){
         user = []
         newTurn()
     }
-    else if (errorCounter > 1) {
+    else if (errorAmount === 1) {
         alert("You lose!")
-        window.location.reload(false);
+        resetEverything()
     }
 }
 
@@ -83,6 +91,14 @@ function changeRoundNumber(){
     roundCounter.innerText = round
 }
 
+function resetEverything(){
+    user = []
+    computer = []
+    round = 0
+    roundCounter.innerText = round  
+    startButton.style.display = ""
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 
 const startButton = document.querySelector("#start")
@@ -91,6 +107,8 @@ startButton.addEventListener("click", function() {
     newTurn()
     startButton.style.display = "none"
 })
+
+
 
 
 
