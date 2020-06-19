@@ -7,13 +7,12 @@
 }
 
 #main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     #wrapper {
-        display: flex;
-        padding: 1% 0 0 0;
-        align-items: center;
-        justify-content: center;
+        padding-top: 1%;
         button{
-            margin-bottom: 0.9%;
             background-color: teal;
             border: transparent;
             &:hover{
@@ -25,8 +24,8 @@
 
 #simon-wrapper {
     display: flex;
-
     justify-content: center;
+    padding-top: 2%;
     #simon {
         position: relative;
         width: 550px;

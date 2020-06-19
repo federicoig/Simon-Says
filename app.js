@@ -28,13 +28,14 @@ function checkUserInput(){
     let errorCounter = 0
 
     user.forEach( (color, index) => {
-        console.log(index)
         if (color !== computer[index]){
             return errorCounter++
         }
+        else if (user.length === computer.length){
+            handleErrors(errorCounter)
+        }
     })
-
-    if (user.length === computer.length){
+    if (errorCounter === 1){
         handleErrors(errorCounter)
     }
 }
