@@ -1,6 +1,6 @@
 ## DEMO
 
-Open [Simon DEMO](federicoig.github.io/simon-says/) to visualize live demo.
+Open [Simon DEMO](https://federicoig.github.io/Simon-Says/) to visualize live demo.
 
 ### 💾 How to install
 
